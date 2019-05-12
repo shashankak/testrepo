@@ -1,0 +1,57 @@
+<div class="row">
+    <span class="msg">{{message}}</span>
+    <span class="error-msg">{{errorMessage}}</span>
+</div>
+<div class="row">
+    <table class="table table-borderless">
+        <tr>
+            <th>Task:</th>
+            <td><input type="text" class="form-control"
+                       id="task" placeholder="Enter task" name="task"
+                       ng-model="taskObject.task" required>
+            </td>
+        </tr>
+        <tr>
+            <th>Priority:</th>
+            <td>
+                <div class="slidecontainer">
+                    <div>
+                        <span class="pull-left">{{myslider.min}}</span>
+                        <span class="pull-right">{{myslider.max}}</span>
+                    </div>
+                    <div class="slidecontainer">
+                        <input type="range" min="{{myslider.min}}" max="{{myslider.max}}" class="slider" id="myRange"
+                               ng-model="taskObject.priority">
+                    </div>
+                </div>
+            </td>
+        <tr>
+            <th>Parent Task:</th>
+            <td><input type="text" class="form-control"
+                       id="parentTask" placeholder="Enter Parent Task" name="parentTask"
+                       ng-model="taskObject.parentTask">
+            </td>
+        </tr>
+        <tr>
+            <th>Start Date:</th>
+            <td><input type="text" class="form-control"
+                       id="startDate" placeholder="Enter Start Date" name="startDate"
+                       ng-model="taskObject.startDate">
+            </td>
+        </tr>
+        <tr>
+            <th>End Date:</th>
+            <td><input type="text" class="form-control"
+                       id="endDate" placeholder="Enter End Date" name="endDate"
+                       ng-model="taskObject.endDate">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button class="btn btn-fsd" ng-click="addTask()">Add Task</button>
+                <button class="btn btn-fsd" ng-click="resetTask()">Reset</button>
+            </td>
+        </tr>
+    </table>
+</div>

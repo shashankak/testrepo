@@ -1,0 +1,95 @@
+<div class="row">
+    <span class="msg">{{message}}</span>
+    <span class="error-msg">{{errorMessage}}</span>
+</div>
+<div class="row myclass">
+    <div class="form-group form-inline col-md-6">
+        <label for="task">Task:</label>
+        <input type="text" class="form-control"
+               id="task" placeholder="Enter task" name="task" ng-model="filterTask"
+        >
+    </div>
+    <div class="form-group form-inline col-md-6">
+        <label for="parentTask">Parent Task:</label>
+        <input type="text" class="form-control"
+               id="parentTask" placeholder="Enter parent task" name="parentTask" ng-model="filterParentTask"
+        >
+    </div>
+    <div class="form-group form-inline col-md-3">
+        <label for="priorityFrom">Priority From:</label>
+        <input type="text" class="form-control input-sm"
+               id="priorityFrom" placeholder="" name="priorityFrom"
+               ng-model="filterPriorityFrom"
+        >
+    </div>
+    <div class="form-group form-inline col-md-3">
+        <label for="priorityTo">Priority To:</label>
+        <input type="text" class="form-control input-sm"
+               id="priorityTo" placeholder="" name="priorityTo"
+               ng-model="filterPriorityTo"
+        >
+    </div>
+    <div class="form-group form-inline col-md-3">
+        <label for="startDate">Start Date:</label>
+        <input type="text" class="form-control input-sm"
+               id="startDate" placeholder="" name="startDate"
+               ng-model="filterStartDate"
+        >
+    </div>
+    <div class="form-group form-inline col-md-3">
+        <label for="endDate">End Date:</label>
+        <input type="text" class="form-control input-sm"
+               id="endDate" placeholder="" name="endDate"
+               ng-model="filterEndDate"
+        >
+    </div>
+</div>
+<div class="row">
+    <table class="table table-borderless">
+        <tr ng-repeat="taskrow in tasks | filter:{task: filterTask, parentTask:filterParentTask,
+        startDate: filterStartDate, endDate:filterEndDate} | filter: priorityFilter">
+            <td>
+                <div class="label-fsd">Task</div>
+                <div class="fsd-css-task-block">
+                    {{taskrow.task}}
+                </div>
+            </td>
+            <td>
+                <div class="label-fsd">Parent</div>
+                <div class="fsd-css-task-block">
+                    <span ng-show="taskrow.parentTask">
+                        {{taskrow.parentTask}}
+                    </span>
+                    <span ng-show="!taskrow.parentTask">
+                        This Task has no parent.
+                    </span>
+                </div>
+            </td>
+            <td>
+                <div class="label-fsd">Prioity</div>
+                <div>
+                    {{taskrow.priority}}
+                </div>
+            </td>
+            <td>
+                <div class="label-fsd">Start Date</div>
+                <div>
+                    {{taskrow.startDate}}
+                </div>
+            </td>
+            <td>
+                <div class="label-fsd">End Date</div>
+                <div>
+                    {{taskrow.endDate}}
+                </div>
+            </td>
+            <td>
+                <div class="label-fsd"></div>
+                <div>
+                    <a href="#edittask-view/{{taskrow.taskId}}" class="btn btn-fsd">Edit</a>
+                    <button class="btn btn-fsd" ng-click="deleteTaskById(taskrow.taskId)">End Task</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
